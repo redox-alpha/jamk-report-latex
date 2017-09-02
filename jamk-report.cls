@@ -8,6 +8,8 @@
 \usepackage{sectsty}
 \usepackage[parfill]{parskip}
 \usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{caption}
 
 % Titles
 \usepackage{titlesec}
@@ -44,3 +46,19 @@
 \fancyhead[R]{\thepage}
 
 \sectionfont{\fontsize{18pt}{18pt}\selectfont}
+
+\captionsetup{justification=justified,singlelinecheck=false}
+
+% Figure command
+%% Takes 2 parameters. Path to figure file and caption
+%%
+\newcommand{\jamkfigure}[3]{
+	\begin{figure}[h]
+		\includegraphics[width=5in]{#1}
+		\caption{#2}
+		\label{#3}
+	\end{figure}
+}
+
+% Set path to graphics folder
+\graphicspath{ {images/} }
