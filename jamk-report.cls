@@ -50,13 +50,12 @@
 \captionsetup{justification=justified,singlelinecheck=false}
 
 % Figure command
-%% Takes 2 parameters. Path to figure file and caption
-%%
-\newcommand{\jamkfigure}[3]{
+%% Takes 4 parameters. width, path to image, caption and reference name. Width is optional
+\newcommand{\jamkfigure}[4][6in]{
 	\begin{figure}[h]
-		\includegraphics[width=5in]{#1}
-		\caption{#2}
-		\label{#3}
+		\includegraphics[width=#1]{#2}
+		\caption{#3}
+		\label{#4}
 	\end{figure}
 }
 
