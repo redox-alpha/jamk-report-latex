@@ -11,7 +11,24 @@
 
 % Titles
 \usepackage{titlesec}
-\titlespacing*{\section}{0pt}{0pt}{2em}
+\titlespacing*{\section}
+	{0pt}
+	{0pt}
+	{2em}
+
+%% Sub section formatting
+\titleformat{\subsection}
+	{\fontsize{14pt}{14pt}\normalfont}
+	{\thesubsection}
+	{2em}
+	{}
+
+%% sub sub sectoin formatting
+\titleformat{\subsubsection}
+	{\fontsize{13pt}{13pt}\normalfont}
+	{\thesubsubsection}
+	{2em}
+	{}
 
 % Fonts
 \usepackage{fontspec}
@@ -26,4 +43,4 @@
 \renewcommand{\headrulewidth}{0pt}
 \fancyhead[R]{\thepage}
 
-\sectionfont{\fontsize{18}{22}\selectfont}
+\sectionfont{\fontsize{18pt}{18pt}\selectfont}
