@@ -7,7 +7,7 @@ This template is written according to project reporting instructions found
 [here](http://oppimateriaalit.jamk.fi/projectreportinginstructions/7-appearance-of-the-thesis/)
 and the Word template student Intranet (the template file requires a login for
 some reason). This template includes some utility macros that makes adding
-images a bit easier. I plan to add an utility macro for tables and
+images a bit easier. I plan to add utility macros for tables and
 bibliographical references as well. 
 
 So far, this class file has only been tested on Debian. The font used is
