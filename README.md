@@ -33,7 +33,7 @@ apt-get install texlive texlive-latex-extra texlive-fonts-extra
 ### Adding images
 
 Creates an image with a caption and a label. Has an optional parameter for
-image width. The default width for an image `6in`. This might change in the
+image width. The default width for an image is `6in`. This might change in the
 near future. Place the image in `images/` folder which is located in the same
 folder as the class file (`jamk-report.cls`).
 
