@@ -25,8 +25,10 @@ an issue.
 On Debian based systems install the following packages.
 
 ```bash
-apt-get install texlive texlive-latex-extra texlive-fonts-extra
+apt-get install texlive texlive-xetex texlive-latex-extra texlive-fonts-extra
 ```
+This template has to be compiled using `xelatex` or `lualatex` due to the font
+stuff. This means that the `pdflatex` command doesn't work.
 
 ## Macros
 
