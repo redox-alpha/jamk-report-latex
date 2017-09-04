@@ -51,7 +51,7 @@ Add an image with default width:
 Add an image with custom width:
 ```latex
 \jamkfigure
-  [2in]          % optional
+  [2in]          % width (optional)
   {example.png}  % filename
   {Caption text} % caption
   {fig:example}  % label
