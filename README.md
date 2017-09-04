@@ -42,12 +42,19 @@ in the same folder as the class file (`jamk-report.cls`).
 Add an image with default width:
 
 ```latex
-\jamkfigure{example.png}{Caption text}{fig:example}
+\jamkfigure
+  {example.png}  % filename
+  {Caption text} % caption
+  {fig:example}  % label
 ```
 
 Add an image with custom width:
 ```latex
-\jamkfigure[2in]{example.png}{Caption text}{fig:example}
+\jamkfigure
+  [2in]          % optional
+  {example.png}  % filename
+  {Caption text} % caption
+  {fig:example}  % label
 ```
 
 Reference the image
@@ -72,10 +79,10 @@ Here's an example:
     {
         % Table data
         \textbf{Type} & \textbf{Number of sides} & \textbf{Usage} \\
-        D4 & 4 & Tabletop RPGs \\
-        D6 & 6 & Gambling, games... \\
-        D10 & 10 & Tabletop RPGs \\
-        D20 & 20 & Tabletop RPGs \\
-        D100 & 100 & Tabletop RPGs \\
+        D4      & 4     & Tabletop RPGs     \\
+        D6      & 6     & Gambling, games...\\
+        D10     & 10    & Tabletop RPGs     \\
+        D20     & 20    & Tabletop RPGs     \\
+        D100    & 100   & Tabletop RPGs     \\
     }
 ```
