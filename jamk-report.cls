@@ -76,6 +76,7 @@
 \graphicspath{ {images/} }
 
 % Table command
+% Takes 4 parameters. Caption, reference name, table layout and table contents
 \newcommand{\jamktable}[4]{
     \vspace{1em}
     \begin{table}[h]

@@ -34,10 +34,10 @@ stuff. This means that the `pdflatex` command doesn't work.
 
 ### Adding images
 
-Creates an image with a caption and a label. Has an optional parameter for
-image width. The default width for an image is `6in`. This might change in the
-near future. Place the image in `images/` folder which is located in the same
-folder as the class file (`jamk-report.cls`).
+`\jamkfigure` creates an image with a caption and a label. Has an optional
+parameter for image width. The default width for an image is `6in`. This might
+change in the near future. Place the image in `images/` folder which is located
+in the same folder as the class file (`jamk-report.cls`).
 
 Add an image with default width:
 
@@ -53,4 +53,29 @@ Add an image with custom width:
 Reference the image
 ```latex
 \ref{fig:example}
+```
+
+### Adding tables
+
+`\jamktable` creates a table with a caption and label for referencing. Requires
+4 parameters.  The parameters are: caption, label, table layout and table
+content. Table layout and contents follow regular Latex table rules (read more
+about them [here](https://en.wikibooks.org/wiki/LaTeX/Tables)).
+
+Here's an example:
+
+```latex
+\jamktable
+    {Different types of dice}   % Caption
+    {tbl:dicetypes}             % Label that is used to refence the table
+    {l r l}                     % Table layout
+    {
+        % Table data
+        \textbf{Type} & \textbf{Number of sides} & \textbf{Usage} \\
+        D4 & 4 & Tabletop RPGs \\
+        D6 & 6 & Gambling, games... \\
+        D10 & 10 & Tabletop RPGs \\
+        D20 & 20 & Tabletop RPGs \\
+        D100 & 100 & Tabletop RPGs \\
+    }
 ```
