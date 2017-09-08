@@ -3,14 +3,27 @@
 \LoadClass[12pt]{article}
 
 \usepackage[margin=2cm,left=4.3cm]{geometry}
-\usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
+\usepackage[british]{babel}
 \usepackage{sectsty}
 \usepackage[parfill]{parskip}
 \usepackage{fancyhdr}
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{setspace}
+\usepackage[nottoc]{tocbibind}
+\usepackage{polyglossia}
+\setdefaultlanguage[variant=british]{english}
+
+% bibliography
+\usepackage[british]{babel}
+\usepackage{csquotes}
+\usepackage[
+    backend=biber,
+    style=apa,
+    sorting=nty
+]{biblatex}
+\DeclareLanguageMapping{english}{english-apa}
+\addbibresource{refs.bib}
 
 % Titles
 \usepackage{titlesec}
@@ -87,4 +100,8 @@
         \label{#2}
     \end{table}
     \vspace{1em}
+}
+
+\newcommand{\jamkcite}[2][{}]{
+    (\cite[#1]{#2})
 }
