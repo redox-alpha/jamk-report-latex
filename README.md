@@ -25,7 +25,7 @@ an issue.
 On Debian based systems install the following packages.
 
 ```bash
-apt-get install texlive texlive-xetex texlive-latex-extra texlive-fonts-extra
+apt-get install texlive texlive-xetex texlive-latex-extra texlive-fonts-extra biber texlive-biber-extra
 ```
 This template has to be compiled using `xelatex` or `lualatex` due to the font
 stuff. This means that the `pdflatex` command doesn't work.
@@ -86,3 +86,22 @@ Here's an example:
         D100    & 100   & Tabletop RPGs     \\
     }
 ```
+
+### Adding citations
+
+`\jamkcite` creates a citation to a bibliographical reference defined
+in `refs.bib`. Read more about bib files
+[here](https://www.sharelatex.com/learn/Bibliography_management_in_LaTeX).
+The class file takes care of everything, you just have to fill your references
+to `refs.bib`. You use it like this:
+
+```latex
+\jamkcite{alabelinyourbibfile}
+```
+
+or like this if you need additional information (e.g. page number):
+
+```latex
+\jamkcite[p. 1-50]{alabelinyourbibfile}
+```
+
