@@ -1,77 +1,131 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{jamk-report}[2017/09/02 JAMK Report]
-\LoadClass[12pt]{article}
+\RequirePackage{calc}
+\RequirePackage[pass]{geometry}[2010/09/12 v5.6 Page Geometry]
+\RequirePackage{babel}
 
-\usepackage[margin=2cm,left=4.3cm]{geometry}
-\usepackage[british]{babel}
-\usepackage{sectsty}
-\usepackage[parfill]{parskip}
-\usepackage{fancyhdr}
-\usepackage{graphicx}
-\usepackage{caption}
-\usepackage{setspace}
-\usepackage[nottoc]{tocbibind}
-\usepackage{polyglossia}
-\setdefaultlanguage[variant=british]{english}
+
+\newif\if@grading
+
+% Languages
+
+\DeclareOption{finnish}{}
+\DeclareOption{swedish}{}
+\DeclareOption{english}{}
+
+% other options
+
+\DeclareOption{10pt}{\PassOptionsToClass{10pt}{article}}
+\DeclareOption{11pt}{\PassOptionsToClass{11pt}{article}}
+
+\ProcessOptions
+\LoadClass[titlepage,a4paper,11pt]{article} %add titlepage later
+
+
+\newcommand{\@university}{JAMK University of Applied Sciences}
+\newcommand{\@faculty}{School of Technology}
+\newcommand{\@department}{Department}
+\newcommand{\@subject}{Cyber Stuff}
+\newcommand{\@level}{dasf}
+\newcommand{\@abstract}{}
+\newcommand{\@city}{Helsinki}
+\newcommand{\@dateofacceptance}{Date of acceptance}%
+\newcommand{\@grade}{Grade}%
+
+
+
+\newcommand{\@instructor}{Instructor}%
+\newcommand{\@ccs}{ACM Computing Classification System (CCS):}%
+
+
+\newcommand{\university}[1]{\renewcommand{\@university}{#1}}
+\newcommand{\faculty}[1]{\renewcommand{\@faculty}{#1}}
+\newcommand{\department}[1]{\renewcommand{\@department}{#1}}
+\newcommand{\subject}[1]{\renewcommand{\@subject}{#1}}
+\newcommand{\level}[1]{\renewcommand{\@level}{#1}}
+\renewcommand{\abstract}[1]{\renewcommand{\@abstract}{#1}}
+
+
+\newcommand{\lastpage}{%
+  \label{lastpage}%
+}
+
+
+
+\newcommand\frontmatter{%
+    \pagenumbering{roman}}
+  
+\newcommand\mainmatter{%
+    \clearpage
+    \pagenumbering{arabic}}
+
+
+
+
+\newcommand{\@maketitle}{
+\begin{titlepage}%
+{
+    \newgeometry{scale=0.7,marginratio={1:1, 1:1},ignoreall}
+    \setlength{\parindent}{0pt}
+    \newlength{\sideindent}%
+
+
+    %\setlength{\sideindent}{\textwidth - 15mm - \widthof{\@dateofacceptance \@grade}}%
+    \newlength{\lowerspace}%
+    \setlength{\lowerspace}{0.6\textheight-3\baselineskip}%
+    \large
+
+  
+    \vspace*{\fill}
+
+
+    {\Large\bfseries \@title}
+
+    \vspace{2\baselineskip}
+
+    \@author
+
+    \vspace{\lowerspace}
+
+    \@level\\
+    \@university\\
+    \@department
+
+    \vspace{2\baselineskip}
+
+    \@city,\ \@date
+    \restoregeometry
+
+}
+\end{titlepage}%
+
+}
+
+\AtBeginDocument{
+    \@ifpackageloaded{hyperref}{
+        \renewcommand{\maketitle}{
+            \hypersetup{pageanchor=false}
+            \@maketitle
+            \hypersetup{pageanchor=true}
+        }
+    }
+    {
+        \renewcommand{\maketitle}{\@maketitle}
+    }
+}
+
+
+%\usepackage[british]{babel}
+
+%\setdefaultlanguage[variant=british]{english}
 
 % bibliography
-\usepackage[british]{babel}
-\usepackage{csquotes}
-\usepackage[
-    backend=biber,
-    style=apa,
-    sorting=nty
-]{biblatex}
-\DeclareLanguageMapping{english}{english-apa}
-\addbibresource{refs.bib}
-
-% Titles
-\usepackage{titlesec}
-\titlespacing*{\section}
-	{0pt}
-	{0pt}
-	{2em}
-
-%% Sub section formatting
-\titleformat{\subsection}
-	{\fontsize{14pt}{14pt}\normalfont}
-	{\thesubsection}
-	{2em}
-	{}
-
-%% sub sub sectoin formatting
-\titleformat{\subsubsection}
-	{\fontsize{13pt}{13pt}\normalfont}
-	{\thesubsubsection}
-	{2em}
-	{}
+%\usepackage[british]{babel}
 
 % Fonts
-\usepackage{fontspec}
-\setmainfont{Carlito}
+%\usepackage{fontspec}
+%\setmainfont{Carlito}
 
-% set paragraph linespacing to 1.5
-\renewcommand{\baselinestretch}{1.5}
-
-% set top header
-\setlength{\headheight}{14pt}
-\pagestyle{fancy}
-\fancyhf{}
-\renewcommand{\headrulewidth}{0pt}
-\fancyhead[R]{\thepage}
-
-\sectionfont{\fontsize{18pt}{18pt}\selectfont}
-
-\captionsetup[table]{
-    font={stretch=2.0},
-    justification=justified,
-    singlelinecheck=false
-}
-\captionsetup[figure]{
-    font={stretch=2.0},
-    justification=justified,
-    singlelinecheck=false
-}
 
 % Figure command
 %% Takes 4 parameters. width, path to image, caption and reference name. Width is optional
@@ -85,8 +139,6 @@
     \vspace{1em}
 }
 
-% Set path to graphics folder
-\graphicspath{ {images/} }
 
 % Table command
 % Takes 4 parameters. Caption, reference name, table layout and table contents
@@ -102,6 +154,6 @@
     \vspace{1em}
 }
 
-\newcommand{\jamkcite}[2][{}]{
-    (\cite[#1]{#2})
-}
+%\newcommand{\jamkcite}[2][{}]{
+%    (\cite[#1]{#2})
+%}

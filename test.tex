@@ -1,6 +1,35 @@
 \documentclass{jamk-report}
 
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsfonts,amsmath,amssymb,amsthm,booktabs,color,enumitem,graphicx}
+\usepackage[pdftex,hidelinks]{hyperref}
+
+\usepackage[nottoc]{tocbibind}
+
+
+
+\title{Esimerkkiotsikko}
+\author{Eija Esimerkki}
+\date{\today}
+\level{Seminaariraportti}
+\abstract{Tiivistelmä.}
+
+
 \begin{document}
+
+\frontmatter      % roman page numbering for front matter
+
+
+\maketitle        % title page
+
+
+\mainmatter       % clear page, start arabic page numbering
+
+
 
 \section{test document}
 
@@ -21,7 +50,7 @@ neque quis felis. Ut metus ante, sodales eu tincidunt eu, lobortis id mauris.
 
 Here's a test picture.
 
-\jamkfigure[2in]{test.png}{Test caption}{fig:dice}
+\jamkfigure[2in]{images/test.png}{Test caption}{fig:dice}
 
 Let's reference the test picture! Picture \ref{fig:dice} is a picture of
 dice!
@@ -55,9 +84,9 @@ Time for a table!
         D100 & 100 & Tabletop RPGs \\
     }
 
-Let's cite a reference without any additional information: \jamkcite{einstein}
+Let's cite a reference without any additional information: 
 
-Let's cite a reference some additional information (e.g. page number): \jamkcite[p. 123]{einstein}
+Let's cite a reference some additional information (e.g. page number):
 
 Suspendisse consequat lectus urna, vel hendrerit tortor euismod quis. Aliquam
 diam urna, rhoncus at suscipit nec, pellentesque sed tellus. Fusce auctor
@@ -120,6 +149,6 @@ efficitur odio dolor ac nibh. Etiam feugiat finibus viverra. Proin lobortis
 porttitor arcu et malesuada.  Pellentesque rutrum venenatis leo, et luctus nibh
 iaculis at.  Vestibulum ac nulla quis tellus rutrum laoreet ac sit amet lacus.
 
-\printbibliography
+%\printbibliography
 
 \end{document}
