@@ -3,26 +3,45 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage{microtype}
+\usepackage[defaultsans]{opensans} %This font combo seems to be adequately hinted 
+\usepackage{charter}
+\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,factor=1100,stretch=20,shrink=20]{microtype}
 \usepackage{amsfonts,amsmath,amssymb,amsthm,booktabs,color,enumitem,graphicx}
 \usepackage[pdftex,hidelinks]{hyperref}
 \usepackage{datetime2} %ISO date format is recommended for language compatibility
+\usepackage{acro}
+
 
 % Automatically set the PDF metadata fields
 \makeatletter
 \AtBeginDocument{\hypersetup{pdftitle = {\@title}, pdfauthor = {\@author}}}
 \makeatother
 
+% babelbib for non-english bibliography using bibtex
+\usepackage[fixlanguage]{babelbib}
 
+% add bibliography to the table of contents
+\usepackage[nottoc]{tocbibind}
 
-\title{Esimerkkiotsikko}
-\author{Eija Esimerkki}
+% Document information
+
+\title{JAMK \LaTeX\ Report Template}
+\author{Samir Puuska, Marko Silokunnas}
 \date{\today}
-\level{Master's thesis}
-\supervisors{Simo Superviisori}
+\level{Instruction manual}
+\supervisors{Leslie Lamport}
 \assigned{Liskomiehet}
 \abstract{Jotai tuubaa tiivistelmäksi.}
+
+
+
+% abbreviations:
+
+\DeclareAcronym{tcp}{
+  short = TCP ,
+  long  = Transmission Control Protocol ,
+  class = abbrev
+}
 
 
 \begin{document}
@@ -31,51 +50,119 @@
 
 
 \maketitle        % title page
-\makeabstract     % abstract page
+
+
+
+\makeabstract     % abstract pages; If not writing thesis you may comment these out
 \makeabstractfin
 
 \tableofcontents  % table of contents
+
+\listoffigures    %Remove if not needed
+\listoftables
+
+%Change these names to Finnish if needed
+\addcontentsline{toc}{section}{List of Abbreviations}
+\printacronyms[include-classes=abbrev,name=Abbreviations]
 
 \mainmatter       % clear page, start arabic page numbering
 
 
 
-\section{test document}
+\section{Introduction}
 
-This is a test document.
+Latex\footnote{Pronounced not as latex the rubber!} is a powerful system
+for creating professional looking documents, such as reports, thesis's, and
+scientific papers.
 
-Suspendisse consequat lectus urna, vel hendrerit tortor euismod quis. Aliquam
-diam urna, rhoncus at suscipit nec, pellentesque sed tellus. Fusce auctor
-dignissim purus vel maximus. Morbi faucibus, lectus eget tempor posuere, tellus
-ex imperdiet nibh, sed ultricies risus diam vitae nisi. Sed sed augue
-malesuada, fringilla sem rutrum, molestie erat.  Phasellus non fringilla ex.
-Integer eu lacinia est. Mauris commodo arcu eu consectetur condimentum. Donec
-at ipsum at nisl blandit commodo a vitae nulla.  Quisque luctus sit amet turpis
-vitae auctor. Nunc blandit metus ligula, nec auctor tortor sollicitudin et.
-Nullam tristique efficitur ipsum, vel laoreet sapien lobortis at. Ut aliquet,
-nulla id lobortis scelerisque, neque ante hendrerit turpis, vitae maximus sem
-neque quis felis. Ut metus ante, sodales eu tincidunt eu, lobortis id mauris.
+This document strives to both help you in creating documents with \LaTeX, %https://oppimateriaalit.jamk.fi/raportointiohje/
+as well as serve as a template that you can easily adjust to your needs.
+This document follows the official JAMK report instructions as closely
+as it is practical. Nevertheless, if your class or instructor requires
+specific style, you may have to adjust this template. The font selection
+is motivated by the on-screen readability factors; text hinting has
+been confirmed to work in Adobe Acrobat and several Linux PDF readers.
+
+The full template consists of three separate files: \texttt{template.tex}
+is the main TeX file, where you produce your text. All document specific
+options are adjustable in this file. \texttt{jamk-report.cls}
+is the class file, that provides the basic report style. In most use cases there should be
+no reason to adjust the template directly. Finally, \texttt{refs.bib} contains
+an example bibliography in bibtex format. You should add your bibtex entries to this file.
+
+While much work has been done to keep necessary adjustments minimal for
+standard usage, there are still minor manual tweaks required if the user
+wishes to change language. Some packages, such as the \texttt{acro} package,
+do not support automatic localization. These exceptions are documented in the
+\texttt{template.tex} file. This template currently supports Finnish and English.
 
 
-Here's a test picture.
+\section{General Document Structure}
 
+The first page of the JAMK report format is the title page. It has all the
+elements one might expect to find on a title page, i.e. the title, author,
+document type, and other descriptors. You should change these variables
+in \texttt{template.tex} file.
+
+\subsection{Class Options}
+
+This template is based on the standard \texttt{article} class. The only option
+that users should adjust is the language, by changing the documentclass entry
+to desired option.
+
+\begin{verbatim}
+\documentclass[english]{jamk-report}
+\end{verbatim}
+
+Paper sizes other than A4 are not supported. It is not advisable to adjust text
+size from the default 11p, although the package supports also 10p.
+
+\subsection{Document Variables}
+
+The template requires that the user sets certain variables, such as the title,
+name of the author, and document type. In addition, if the user wishes to use
+the \texttt{acro} environment for managing the abbreviations and acronyms, these
+must also be declared at the document preamble.
+
+
+\subsection{Sectioning and Structure}
+
+The template uses standard convention for sectioning, i.e. 
+
+\begin{verbatim}
+\section{First Level}
+\subsection{Second Level}
+\subsubsection{Third Level}
+\end{verbatim}
+
+As expected, the table of contents is generated automatically.
+
+\section{Tables and Images}
+
+\section{Mathematics}
+
+\section{Citations, Abbreviations, and Bibliography}
+
+\section{crap}
 \jamkfigure[2in]{images/test.png}{Test caption}{fig:dice}
 
 Let's reference the test picture! Picture \ref{fig:dice} is a picture of
-dice!
+dice! Here's a test picture.\ac{tcp}
 
 
-Suspendisse consequat lectus urna, vel hendrerit tortor euismod quis. Aliquam
-diam urna, rhoncus at suscipit nec, pellentesque sed tellus. Fusce auctor
-dignissim purus vel maximus. Morbi faucibus, lectus eget tempor posuere, tellus
-ex imperdiet nibh, sed ultricies risus diam vitae nisi. Sed sed augue
-malesuada, fringilla sem rutrum, molestie erat.  Phasellus non fringilla ex.
-Integer eu lacinia est. Mauris commodo arcu eu consectetur condimentum. Donec
-at ipsum at nisl blandit commodo a vitae nulla.  Quisque luctus sit amet turpis
-vitae auctor. Nunc blandit metus ligula, nec auctor tortor sollicitudin et.
-Nullam tristique efficitur ipsum, vel laoreet sapien lobortis at. Ut aliquet,
-nulla id lobortis scelerisque, neque ante hendrerit turpis, vitae maximus sem
-neque quis felis. Ut metus ante, sodales eu tincidunt eu, lobortis id mauris.
+
+\begin{multline}\label{ccgpdf}
+f(x)\equiv f(x;\mu_1,\mu_2,\sigma_1,\sigma_2,w_1,w_2,a,b)= \\
+\left\{\begin{array}{ll}
+0\;\;\; & \textrm{if}\; x<a \\
+\frac{R}{\sqrt{2\pi}}\left[\frac {w_1}{\sigma_1}\exp\left(-\frac{(x-\mu_1)^2}{2\sigma_1^2}\right)+
+\frac {w_2}{\sigma_2}\exp\left(-\frac{(x-\mu_2)^2}{2\sigma_2^2}\right)
+\right]
+\;\;\; & \textrm{if}\; a\le x\le b \\
+0\;\;\; & \textrm{if}\; x>b \\
+\end{array}\right.,
+\end{multline}
+
 
 Time for a table!
 
@@ -110,7 +197,7 @@ nulla id lobortis scelerisque, neque ante hendrerit turpis, vitae maximus sem
 neque quis felis. Ut metus ante, sodales eu tincidunt eu, lobortis id mauris.
 
 Let's reference our fine table: Table \ref{tbl:dicetypes} contains information
-about different kinds of dice!
+about different kinds of dice!~\cite{einstein}
 
 
 \subsection{lorem ipsum}
@@ -134,7 +221,7 @@ tellus vel consectetur. Integer porta tempor arcu, quis sodales urna posuere a.
 Phasellus a lacinia dolor. Nam nec dui massa. Praesent vestibulum purus ac
 felis volutpat vehicula. Sed sem nisl, hendrerit id gravida at, condimentum
 hendrerit massa.  Maecenas vitae erat laoreet, semper enim sit amet,
-condimentum ipsum.
+condimentum ipsum.~\cite{Puuska_2019,Haar_1910}
 
 Donec at porttitor nibh. Suspendisse feugiat consequat ornare.  Mauris varius
 porttitor libero ut facilisis. Pellentesque quis eros eros. Donec quis cursus
@@ -158,6 +245,7 @@ efficitur odio dolor ac nibh. Etiam feugiat finibus viverra. Proin lobortis
 porttitor arcu et malesuada.  Pellentesque rutrum venenatis leo, et luctus nibh
 iaculis at.  Vestibulum ac nulla quis tellus rutrum laoreet ac sit amet lacus.
 
-%\printbibliography
+\bibliographystyle{acm} %ACM is ok for engineering and math. Change if needed.
+\bibliography{refs}
 
 \end{document}

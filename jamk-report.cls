@@ -4,6 +4,7 @@
 \RequirePackage[pass]{geometry}[2010/09/12 v5.6 Page Geometry]
 \RequirePackage{babel}
 \RequirePackage{graphicx}
+\RequirePackage[parfill]{parskip}
 
 
 \newif\if@grading
@@ -28,8 +29,8 @@
 
 \newcommand{\@university}{JAMK University of Applied Sciences}
 \newcommand{\@faculty}{School of Technology}
-\newcommand{\@department}{Department}
-\newcommand{\@programme}{Cyber Stuff}
+\newcommand{\@department}{IT Institute}
+\newcommand{\@programme}{Degree programme in computers and stuff}
 \newcommand{\@level}{Report}
 \newcommand{\@lang}{English}
 \newcommand{\@abstract}{}
@@ -91,7 +92,7 @@
 \newcommand{\abst@doctype}{\fontsize{12}{9}\bf\selectfont}
 \newcommand{\abst@small}{\fontsize{11}{12}\selectfont}
 \newcommand{\abst@tiny}{\fontsize{9}{10}\selectfont}
-\newcommand{\abst@grandtitle}{\fontsize{24}{24}\bf\selectfont}
+\newcommand{\abst@grandtitle}{\fontsize{22}{22}\bf\selectfont}
 \newcommand{\abst@grandp}{\fontsize{14}{14}\selectfont}
 \newcommand{\abst@title}{\fontsize{12}{12}\bf\selectfont}
 
@@ -108,14 +109,19 @@
 
     \put(50,50){\textcolor[cmyk]{1,0.45,0.06,0.28}{\rule{30pt}{750pt}}} %Gamut weirdness(?)
 
-    \put(120, 600){\makebox(200, 8)[l]{\abst@grandtitle\@title}}
-    \put(120, 540){\makebox(100, 8)[l]{\abst@grandp\@author}}
-    \put(120, 340){\makebox(100, 8)[l]{\abst@grandp\@level}}
-    \put(120, 320){\makebox(100, 8)[l]{\abst@grandp\@date}}
-    \put(120, 300){\makebox(100, 8)[l]{\abst@grandp\@faculty}}
-    \put(120, 280){\makebox(100, 8)[l]{\abst@grandp\@department}}
-    \put(120, 260){\makebox(100, 8)[l]{\abst@grandp\@programme}}
+    \put(115, 600){ %Prevent long titles from overflowing [fix indent?]
+        \parbox[t]{380pt}{
+        \noindent \abst@grandtitle\@title
+        }
+    }
 
+    \put(120, 520){\makebox(100, 8)[l]{\abst@grandp\@author}}
+    \put(120, 340){\makebox(100, 8)[l]{\abst@grandp\@level}}
+    \put(120, 310){\makebox(100, 8)[l]{\abst@grandp\@faculty}}
+    \put(120, 290){\makebox(100, 8)[l]{\abst@grandp\@department}}
+    \put(120, 270){\makebox(100, 8)[l]{\abst@grandp\@programme}}
+
+    \put(120, 240){\makebox(100, 8)[l]{\abst@grandp\@date}}
 
     \end{picture}
     \restoregeometry
@@ -214,7 +220,7 @@
 \put(385, 705){\makebox(100, 8)[l]{\abst@small\@date}}
 
 \iflanguage{finnish}{
-    \renewcommand{\@grade}{Finnish}%
+    \renewcommand{\@lang}{Finnish}%
 }
 
 
@@ -308,6 +314,7 @@
 \iflanguage{finnish}{
     \renewcommand{\@lang}{Suomi}%
 }
+
 \iflanguage{english}{
     \renewcommand{\@lang}{Englanti}%
 }
@@ -330,18 +337,6 @@
 \newpage
 }
 
-
-
-%\usepackage[british]{babel}
-
-%\setdefaultlanguage[variant=british]{english}
-
-% bibliography
-%\usepackage[british]{babel}
-
-% Fonts
-%\usepackage{fontspec}
-%\setmainfont{Carlito}
 
 
 % Figure command
