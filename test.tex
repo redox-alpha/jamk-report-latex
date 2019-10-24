@@ -1,4 +1,4 @@
-\documentclass{jamk-report}
+\documentclass[english]{jamk-report}
 
 
 \usepackage[utf8]{inputenc}
@@ -7,16 +7,22 @@
 \usepackage{microtype}
 \usepackage{amsfonts,amsmath,amssymb,amsthm,booktabs,color,enumitem,graphicx}
 \usepackage[pdftex,hidelinks]{hyperref}
+\usepackage{datetime2} %ISO date format is recommended for language compatibility
 
-\usepackage[nottoc]{tocbibind}
+% Automatically set the PDF metadata fields
+\makeatletter
+\AtBeginDocument{\hypersetup{pdftitle = {\@title}, pdfauthor = {\@author}}}
+\makeatother
 
 
 
 \title{Esimerkkiotsikko}
 \author{Eija Esimerkki}
 \date{\today}
-\level{Seminaariraportti}
-\abstract{Tiivistelmä.}
+\level{Master's thesis}
+\supervisors{Simo Superviisori}
+\assigned{Liskomiehet}
+\abstract{Jotai tuubaa tiivistelmäksi.}
 
 
 \begin{document}
@@ -25,7 +31,10 @@
 
 
 \maketitle        % title page
+\makeabstract     % abstract page
+\makeabstractfin
 
+\tableofcontents  % table of contents
 
 \mainmatter       % clear page, start arabic page numbering
 
