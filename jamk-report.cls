@@ -4,7 +4,17 @@
 \RequirePackage[pass]{geometry}[2010/09/12 v5.6 Page Geometry]
 \RequirePackage{babel}
 \RequirePackage{graphicx}
-\RequirePackage[parfill]{parskip}
+\RequirePackage{acro}
+\RequirePackage{array}
+
+
+%https://en.wikipedia.org/wiki/Widows_and_orphans
+% Disable single lines at the start of a paragraph
+\clubpenalty = 10000
+% Disable single lines at the end of a paragraph 
+\widowpenalty = 10000
+\displaywidowpenalty = 10000 % formulas
+
 
 
 \newif\if@grading
@@ -25,6 +35,8 @@
 
 \ProcessOptions
 \LoadClass[titlepage,a4paper,11pt]{article} %add titlepage later
+
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
 
 
 \newcommand{\@university}{JAMK University of Applied Sciences}

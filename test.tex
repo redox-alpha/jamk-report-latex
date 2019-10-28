@@ -3,14 +3,17 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[defaultsans]{opensans} %This font combo seems to be adequately hinted 
+
 \usepackage{charter}
+\linespread{1.05} %A bit more air for charter
+\usepackage[charter]{mathdesign}
+
 \usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,factor=1100,stretch=20,shrink=20]{microtype}
-\usepackage{amsfonts,amsmath,amssymb,amsthm,booktabs,color,enumitem,graphicx}
+\microtypesetup{expansion=false}
+
+\usepackage{booktabs,color,enumitem,tabularx}
 \usepackage[pdftex,hidelinks]{hyperref}
 \usepackage{datetime2} %ISO date format is recommended for language compatibility
-\usepackage{acro}
-
 
 % Automatically set the PDF metadata fields
 \makeatletter
@@ -114,6 +117,7 @@ to desired option.
 \documentclass[english]{jamk-report}
 \end{verbatim}
 
+\noindent
 Paper sizes other than A4 are not supported. It is not advisable to adjust text
 size from the default 11p, although the package supports also 10p.
 
@@ -122,7 +126,28 @@ size from the default 11p, although the package supports also 10p.
 The template requires that the user sets certain variables, such as the title,
 name of the author, and document type. In addition, if the user wishes to use
 the \texttt{acro} environment for managing the abbreviations and acronyms, these
-must also be declared at the document preamble.
+must also be declared at the document preamble. Table~\ref{table:vars} lists
+the variables and their use.
+
+
+
+\begin{table}[h]\centering
+\ra{1.3}
+    \begin{tabularx}{\textwidth-1em}{p{6em}l>{\raggedleft\arraybackslash}X} \toprule
+        Variable & Purpose & Mandatory  \\ \midrule
+        \texttt{title} & The main title & Yes \\
+        \texttt{author} & The author(s) & Yes \\
+        \texttt{date} & Date of e.g. acceptance & Yes \\
+        \texttt{level} & Document type, e.g. thesis or report & Yes \\
+        \texttt{abstract} & The abstract & When description pages enabled \\
+        \texttt{supervisors} & Supervisors of e.g. for thesis & No \\
+        \texttt{assigned} & If assigned by a third party & No \\
+
+        \bottomrule
+    \end{tabularx}
+\caption{List of variables that describe different aspects of the document.}
+\label{table:vars}
+\end{table}
 
 
 \subsection{Sectioning and Structure}
@@ -135,9 +160,60 @@ The template uses standard convention for sectioning, i.e.
 \subsubsection{Third Level}
 \end{verbatim}
 
-As expected, the table of contents is generated automatically.
+\noindent
+As expected, the table of contents is generated automatically. This template creates
+the list of figures, tables, and abbreviations by default. If you wish not to include
+these sections, you can comment them out in the latex source.
 
 \section{Tables and Images}
+
+
+This section covers the basics of using both tables and images. It is likely
+that you may need to adjust or alter the default parameters to suit your
+specific need. In general, you should use search
+engines to find what solutions others have used. It is likely that
+what you are attempting to do has already been done.
+
+\subsection{Tables}
+
+Tables are an art form. It is generally advisable to omit as much lines
+as possible while maintaining clarity. Table~\ref{table:web} is an example,
+where spacing is used to separate the items. 
+
+\begin{table}[h]\centering
+\ra{1.3}
+    \begin{tabularx}{\textwidth-1em}{llc} \toprule
+        Abbreviation & Technology & Organization  \\ \midrule
+        HTML 5.1 & Hypertext Markup Language & W3C \\
+        CSS  & Cascading Style Sheets & W3C  \\
+        HTTP/1.1& Hypertext Transfer Protocol &  IETF \\
+        TLS 1.1 & Transport Layer Security & IETF \\
+        JSON & JavaScript Object Notation & IETF \\
+        ES & ECMAScript & Ecma International \\
+        \bottomrule
+    \end{tabularx}
+\caption{Web standards and governing standardization organizations.}
+\label{table:web}
+\end{table}
+
+\noindent
+In many cases the example table is not adequate for your data. The table
+may prove to be too narrow for large datasets. In cases like these you
+should consider moving the table to a separate page, and changing the
+orientation to landscape. For this you can try e.g. \texttt{sidewaystable} 
+from the \texttt{rotating} package. There is also a package, \texttt{pdflscape}, that automatically
+orients a single PDF page to landscape mode in PDF readers.
+
+
+\subsection{Images}
+
+Latex supports almost every common image and vector format with appropriate 
+packages. Vector formats such as \texttt{.eps} or \texttt{.pdf} (with an embedded vector image)
+are highly recommended.
+
+For pictures that can not be vectorized, \texttt{.png} format is recommended. You
+may also use \texttt{.jpeg} for photographs. Note, that if you require accurate
+reproduction of colors in print, you may need to use CMYK colors, and worry about different gamuts.
 
 \section{Mathematics}
 
@@ -151,34 +227,31 @@ dice! Here's a test picture.\ac{tcp}
 
 
 
-\begin{multline}\label{ccgpdf}
-f(x)\equiv f(x;\mu_1,\mu_2,\sigma_1,\sigma_2,w_1,w_2,a,b)= \\
-\left\{\begin{array}{ll}
-0\;\;\; & \textrm{if}\; x<a \\
-\frac{R}{\sqrt{2\pi}}\left[\frac {w_1}{\sigma_1}\exp\left(-\frac{(x-\mu_1)^2}{2\sigma_1^2}\right)+
-\frac {w_2}{\sigma_2}\exp\left(-\frac{(x-\mu_2)^2}{2\sigma_2^2}\right)
-\right]
-\;\;\; & \textrm{if}\; a\le x\le b \\
-0\;\;\; & \textrm{if}\; x>b \\
-\end{array}\right.,
-\end{multline}
+\begin{eqnarray}
+    u_\alpha & = & \epsilon^2 \kappa_{xxx} 
+    \left( y-\frac{1}{2}y^2 \right),
+    \label{equ}  \\
+    v & = & \epsilon^3 \kappa_{xxx} y\,,
+    \label{eqv}  \\
+    p & = & \epsilon \kappa_{xx}\,.
+    \label{eqp}
+\end{eqnarray}
+
+\begin{eqnarray}
+    \omega_1 & = &
+    \frac{\partial w}{\partial y}-\frac{\partial v}{\partial z}\,,
+    \nonumber  \\
+    \omega_2 & = & 
+    \frac{\partial u}{\partial z}-\frac{\partial w}{\partial x}\,,
+    \label{eqcurl}  \\
+    \omega_3 & = & 
+    \frac{\partial v}{\partial x}-\frac{\partial u}{\partial y}\,.
+    \nonumber
+\end{eqnarray}
 
 
-Time for a table!
 
-\jamktable
-    {Different types of dice}   % Caption
-    {tbl:dicetypes}             % Label that is used to refence the table
-    {l r l}                     % Table layout
-    {
-        % Table data
-        \textbf{Type} & \textbf{Number of sides} & \textbf{Usage} \\
-        D4 & 4 & Tabletop RPGs \\
-        D6 & 6 & Gambling, games... \\
-        D10 & 10 & Tabletop RPGs \\
-        D20 & 20 & Tabletop RPGs \\
-        D100 & 100 & Tabletop RPGs \\
-    }
+
 
 Let's cite a reference without any additional information: 
 
